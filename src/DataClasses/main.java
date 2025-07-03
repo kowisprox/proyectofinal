@@ -15,8 +15,9 @@ public class main {
         ColaExpedientes cola = new ColaExpedientes();
         Scanner sc = new Scanner(System.in);
 
+        OUTER:
         while (true) {
-            System.out.println("\n===== MENÚ PRINCIPAL =====");
+            System.out.println("\n===== MENU PRINCIPAL =====");
             System.out.println("1. Registrar expediente");
             System.out.println("2. Atender expediente");
             System.out.println("3. Mostrar expedientes en cola");
@@ -25,55 +26,55 @@ public class main {
             System.out.println("6. Salir");
             System.out.print("Opcion: ");
             System.out.print("\nIngrese la opcion deseada (1,2,3,4,5,6): ");
-            int op = sc.nextInt(); sc.nextLine();
-
-            if (op == 1) {
-                System.out.print("ID: ");
-                String id = sc.nextLine();
-                System.out.print("Prioridad: ");
-                String prio = sc.nextLine();
-                System.out.print("DNI: ");
-                String dni = sc.nextLine();
-                System.out.print("Nombre: ");
-                String nom = sc.nextLine();
-                Expediente exp = new Expediente(id, prio, dni, nom);
-                cola.encolar(exp);
-                System.out.println("Expediente registrado.");
-            } else if (op == 2) {
-                Expediente atendido = cola.desencolar();
-                if (atendido != null) {
-                    System.out.println("Atendiendo expediente: " + atendido.getId());
-                } else {
-                    System.out.println("No hay expedientes.");
-                }
-            } else if (op == 3) {
-                cola.mostrarExpedientes();           
-            } 
-            else if (op == 4) {
-                System.out.print("ID del expediente a actualizar: ");
-                String idBuscar = sc.nextLine();
-                NodoExpediente actual = cola.getFrente();
-                boolean encontrado = false;
-
-                while (actual != null) {
-                    if (actual.expediente.getId().equals(idBuscar)) {
-                        System.out.print("Dependencia a registrar: ");
-                        String dep = sc.nextLine();
-                        String ahora = java.time.LocalDateTime.now().toString();
-                        actual.expediente.agregarSeguimiento(dep, ahora);
-                        System.out.println("Seguimiento agregado.");
-                        encontrado = true;
-                        break;
+            int op = sc.nextInt();
+            sc.nextLine();
+            switch (op) {
+                case 1:
+                    System.out.print("ID: ");
+                    String id = sc.nextLine();
+                    System.out.print("Prioridad: ");
+                    String prio = sc.nextLine();
+                    System.out.print("DNI: ");
+                    String dni = sc.nextLine();
+                    System.out.print("Nombre: ");
+                    String nom = sc.nextLine();
+                    Expediente exp = new Expediente(id, prio, dni, nom);
+                    cola.encolar(exp);
+                    System.out.println("Expediente registrado.");
+                    break;
+                case 2:
+                    Expediente atendido = cola.desencolar();
+                    if (atendido != null) {
+                        System.out.println("Atendiendo expediente: " + atendido.getId());
+                    } else {
+                        System.out.println("No hay expedientes.");
+                    }   break;
+                case 3:
+                    cola.mostrarExpedientes();
+                    break;
+                case 4:
+                    System.out.print("ID del expediente a actualizar: ");
+                    String idBuscar = sc.nextLine();
+                    NodoExpediente actual = cola.getFrente();
+                    boolean encontrado = false;
+                    while (actual != null) {
+                        if (actual.expediente.getId().equals(idBuscar)) {
+                            System.out.print("Dependencia a registrar: ");
+                            String dep = sc.nextLine();
+                            String ahora = java.time.LocalDateTime.now().toString();
+                            actual.expediente.agregarSeguimiento(dep, ahora);
+                            System.out.println("Seguimiento agregado.");
+                            encontrado = true;
+                            break;
                         }
                         actual = actual.siguiente;
                     }
-
                     if (!encontrado) {
                         System.out.println("Expediente no encontrado.");
                     }
-            }       
-            else {
-                break;
+                    break;
+                default:
+                    break OUTER;
             }
         }
     }
