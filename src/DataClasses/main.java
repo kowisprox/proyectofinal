@@ -29,7 +29,7 @@ public class main {
             int op = sc.nextInt();
             sc.nextLine();
             switch (op) {
-                case 1:
+                case 1 -> {
                     System.out.print("ID: ");
                     String id = sc.nextLine();
                     System.out.print("Prioridad: ");
@@ -41,18 +41,17 @@ public class main {
                     Expediente exp = new Expediente(id, prio, dni, nom);
                     cola.encolar(exp);
                     System.out.println("Expediente registrado.");
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     Expediente atendido = cola.desencolar();
                     if (atendido != null) {
                         System.out.println("Atendiendo expediente: " + atendido.getId());
                     } else {
                         System.out.println("No hay expedientes.");
-                    }   break;
-                case 3:
-                    cola.mostrarExpedientes();
-                    break;
-                case 4:
+                    }
+                }
+                case 3 -> cola.mostrarExpedientes();
+                case 4 -> {
                     System.out.print("ID del expediente a actualizar: ");
                     String idBuscar = sc.nextLine();
                     NodoExpediente actual = cola.getFrente();
@@ -72,9 +71,10 @@ public class main {
                     if (!encontrado) {
                         System.out.println("Expediente no encontrado.");
                     }
-                    break;
-                default:
+                }
+                default -> {
                     break OUTER;
+                }
             }
         }
     }
