@@ -9,20 +9,24 @@ package DataClasses;
  * @author nicol
  */
 public class Expediente {
-    private String id;
-    private String prioridad;
-    private String dni;
-    private String nombre;
+    private int id;
+    private int prioridad;
+    private DataInteresado data;
+    private String asunto;
+    private String documentoReferencia;
     private ListaSeguimiento seguimiento;
 
-    public Expediente(String id, String prioridad, String dni, String nombre) {
+    public Expediente(int id, int prioridad, DataInteresado data, String asunto, String documentoReferencia, ListaSeguimiento seguimiento) {
         this.id = id;
         this.prioridad = prioridad;
-        this.dni = dni;
-        this.nombre = nombre;
-        this.seguimiento = new ListaSeguimiento();
+        this.data = data;
+        this.asunto = asunto;
+        this.documentoReferencia = documentoReferencia;
+        this.seguimiento = seguimiento;
     }
 
+    
+    
     public void agregarSeguimiento(String dependencia, String timestamp) {
         seguimiento.agregarEvento(dependencia, timestamp);
     }
@@ -32,16 +36,51 @@ public class Expediente {
         seguimiento.mostrarSeguimiento();
     }
 
-    public String getId() { 
+    public int getId() { 
         return id;
         }
-    public String getPrioridad() { 
+    public int getPrioridad() { 
         return prioridad; 
         }
-    public String getDni() {
-        return dni; 
-        }
-    public String getNombre() {
-        return nombre;
-        }
+
+    public DataInteresado getData() {
+        return data;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
+    }
+
+    public void setData(DataInteresado data) {
+        this.data = data;
+    }
+
+    public ListaSeguimiento getSeguimiento() {
+        return seguimiento;
+    }
+
+    public void setSeguimiento(ListaSeguimiento seguimiento) {
+        this.seguimiento = seguimiento;
+    }
+
+    public String getAsunto() {
+        return asunto;
+    }
+
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
+    }
+
+    public String getDocumentoReferencia() {
+        return documentoReferencia;
+    }
+
+    public void setDocumentoReferencia(String documentoReferencia) {
+        this.documentoReferencia = documentoReferencia;
+    }
+    
 }
