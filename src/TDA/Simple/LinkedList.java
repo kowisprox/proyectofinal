@@ -49,7 +49,8 @@ public class LinkedList<T> {
         Node<T> newNode = new Node(item);
 
         if (L != null) {
-            Node ptr = L, prev = null;
+            Node ptr = L;
+            Node prev = null;
             
             while (ptr != null && ptr.item() != ref) {
                 prev = ptr;
@@ -76,7 +77,7 @@ public class LinkedList<T> {
 
     public void removeFirst() {
         if (L != null) {
-            L = L.next();
+            L = (Node<T>) L.next();
         }
     }
 

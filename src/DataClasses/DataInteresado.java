@@ -11,14 +11,16 @@ package DataClasses;
 public class DataInteresado {
     private int dni;
     private String nombres;
-    private String telefono;
+    private int telefono;
     private String email;
+    private String tipo; // Ulima o externo
 
-    public DataInteresado(int dni, String nombres, String telefono, String email) {
+    public DataInteresado(int dni, String nombres, int telefono, String email) {
         this.dni = dni;
         this.nombres = nombres;
         this.telefono = telefono;
         this.email = email;
+        this.tipo = tipo;
     }
 
     public int getDni() {
@@ -29,7 +31,7 @@ public class DataInteresado {
         return nombres;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
@@ -45,11 +47,22 @@ public class DataInteresado {
         this.nombres = nombres;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    
+    
 }
