@@ -58,13 +58,13 @@ public class MainMenuUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(54, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
                 .addComponent(jButton2)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addComponent(jButton3)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
