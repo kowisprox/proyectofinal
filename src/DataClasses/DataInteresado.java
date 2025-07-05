@@ -15,7 +15,7 @@ public class DataInteresado {
     private String email;
     private String tipo; // Ulima o externo
 
-    public DataInteresado(int dni, String nombres, int telefono, String email) {
+    public DataInteresado(int dni, String nombres, int telefono, String email, String tipo) {
         this.dni = dni;
         this.nombres = nombres;
         this.telefono = telefono;

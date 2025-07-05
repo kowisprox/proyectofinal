@@ -4,6 +4,8 @@
  */
 package Screens;
 
+import DataManagers.UserManager;
+
 /**
  *
  * @author migue
@@ -13,9 +15,13 @@ public class MainMenuUI extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
+    
+    private UserManager administrador;
+    
     public MainMenuUI() {
-        initComponents();
-    }
+    initComponents();
+    administrador = new UserManager();  // ahora es solo una instancia para todo
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,14 +93,14 @@ public class MainMenuUI extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        RegisterUserUI testUI = new RegisterUserUI();
-        ScreenManager.openNewScreen(this, testUI);
+             RegisterUserUI testUI = new RegisterUserUI(administrador);        
+             ScreenManager.openNewScreen(this, testUI);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        ShowUsersUI showUsersUI = new ShowUsersUI();
-        ScreenManager.openNewScreen(this, showUsersUI);
+            ShowUsersUI showUsersUI = new ShowUsersUI(administrador);
+            ScreenManager.openNewScreen(this, showUsersUI);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

@@ -8,6 +8,7 @@ package DataClasses;
  *
  * @author nicol
  */
+import DataManagers.UserManager;
 import Screens.LoginUI;
 import java.util.Scanner;
 

@@ -18,7 +18,23 @@ public class UserManager {
     public ListaEnlazadaDoble ListaExp;
     public Cola ColaPendientes;
     public ListaCircular ListaAlertas;
+
+    public UserManager() {
+        this.ArbolDepend = new Arbol();
+        this.ListaExp = new ListaEnlazadaDoble();
+        this.ColaPendientes = new Cola();
+        this.ListaAlertas = new ListaCircular();
+    }
     
+    public UserManager(Arbol ArbolDepend, ListaEnlazadaDoble ListaExp, Cola ColaPendientes, ListaCircular ListaAlertas) {
+        this.ArbolDepend = ArbolDepend;
+        this.ListaExp = ListaExp;
+        this.ColaPendientes = ColaPendientes;
+        this.ListaAlertas = ListaAlertas;
+    }
+         
+    
+          
     // Registrar dependencia completa (id + nombre)
     public void registrarDependencia(int id, String nombre) {
         Dependencia dep = new Dependencia(id, nombre);

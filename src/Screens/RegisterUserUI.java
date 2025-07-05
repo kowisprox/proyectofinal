@@ -31,9 +31,6 @@ public class RegisterUserUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public RegisterUserUI() {
-        initComponents();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,7 +64,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
         lb_FechaInicio = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        lb_tipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,10 +137,10 @@ public class RegisterUserUI extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel11.setText("TIPO");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ulima (interno)", "externo" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        lb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ulima (interno)", "externo" }));
+        lb_tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                lb_tipoActionPerformed(evt);
             }
         });
 
@@ -194,7 +191,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
                                 .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,7 +227,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
                             .addComponent(lb_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11))
                         .addGap(2, 2, 2))
                     .addGroup(layout.createSequentialGroup()
@@ -275,6 +272,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
         // TODO add your handling code here:
+        
         if (lb_identificador.getText().isBlank() || lb_prioridad.getText().isBlank() || lb_asunto.getText().isBlank() 
     || lb_documento.getText().isBlank() || lb_FechaInicio.getText().isBlank() || lb_dni.getText().isBlank()
     || lb_nombre.getText().isBlank() || lb_telefono.getText().isBlank() || lb_email.getText().isBlank()) {
@@ -288,11 +286,11 @@ public class RegisterUserUI extends javax.swing.JFrame {
             int dni = Integer.parseInt(lb_dni.getText());
             int telefono = Integer.parseInt(lb_telefono.getText());
                 } catch (NumberFormatException e) {
-                    warning.setText("HAY CAMPOS QUE DEBEN SER NÚMEROS ENTEROS");
+                    warning.setText("HAY CAMPOS QUE DEBEN SER NÚMEROS");
                     return;
                 }
 
-        try{
+        
             int identificador = Integer.parseInt(lb_identificador.getText());
             int prioridad = Integer.parseInt(lb_prioridad.getText());
             String documento = lb_documento.getText().trim();
@@ -302,6 +300,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
             String email = lb_email.getText().trim();
             String asunto = lb_asunto.getText().trim();
             String FechaInicio = lb_FechaInicio.getText().trim();
+            String tipo = lb_tipo.getActionCommand();
             
             if (administrador.buscarExpediente(identificador)) {
                 warning.setText("ID YA REGISTRADO");
@@ -309,18 +308,15 @@ public class RegisterUserUI extends javax.swing.JFrame {
             } else {
             }
 
-            DataInteresado interesado = new DataInteresado(dni, nombre, telefono, email);
+            DataInteresado interesado = new DataInteresado(dni, nombre, telefono, email, tipo);
 
             Expediente exp = new Expediente(identificador, prioridad, interesado, asunto, documento, FechaInicio);
 
             administrador.registrarExpediente(exp);
 
             JOptionPane.showMessageDialog(this, "Expediente registrado exitosamente.");
-            dispose();
 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Datos numéricos inválidos.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        
         
     }//GEN-LAST:event_registerActionPerformed
 
@@ -336,9 +332,9 @@ public class RegisterUserUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lb_FechaInicioActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void lb_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lb_tipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_lb_tipoActionPerformed
 
     
     private boolean isUnique(String username) {
@@ -379,28 +375,26 @@ public class RegisterUserUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegisterUserUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegisterUserUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegisterUserUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegisterUserUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegisterUserUI().setVisible(true);
+                new LoginUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton goBack;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -421,6 +415,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
     private javax.swing.JTextField lb_nombre;
     private javax.swing.JTextField lb_prioridad;
     private javax.swing.JTextField lb_telefono;
+    private javax.swing.JComboBox<String> lb_tipo;
     private javax.swing.JButton register;
     private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
