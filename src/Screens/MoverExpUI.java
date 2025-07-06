@@ -21,9 +21,9 @@ public class MoverExpUI extends javax.swing.JFrame {
      */
     private UserManager administrador;
     private int idExpediente;
-    private ShowUsersUI showUsersUI;
+    private ShowExpedientesUI showUsersUI;
     
-    public MoverExpUI(UserManager administrador, int idExpediente, ShowUsersUI showUsersUI) {
+    public MoverExpUI(UserManager administrador, int idExpediente, ShowExpedientesUI showUsersUI) {
     this.administrador = administrador;
     this.idExpediente = idExpediente;
     this.showUsersUI = showUsersUI;
