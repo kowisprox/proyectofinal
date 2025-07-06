@@ -4,6 +4,8 @@
  */
 package Screens;
 
+import DataClasses.DataInteresado;
+import DataClasses.Expediente;
 import DataClasses.UserData;
 import DataManagers.UserManager;
 import TDA.Simple.Node;
@@ -27,17 +29,33 @@ public class ShowUsersUI extends javax.swing.JFrame {
 }
     
     private void initializeTable() {
-        DefaultTableModel table = (DefaultTableModel)userTable.getModel();
-        Node<UserData> ptr = UserManager.users().L();
-        int count = 1;
-        
-        while (ptr != null) {
-            table.addRow(new Object[] { count, ptr.item().username });
-            count++;
-            
-            ptr = ptr.next();
-        }
+    DefaultTableModel table = (DefaultTableModel) userTable.getModel();
+
+    // Recorremos la lista de expedientes
+    TDA.Simple.NodoExpediente ptr = administrador.ListaExp.getFrente();
+
+    while (ptr != null) {
+        Expediente exp = ptr.getExpediente();
+        DataInteresado data = exp.getData();
+
+        Object[] row = new Object[] {
+            exp.getId(),
+            exp.getPrioridad(),
+            exp.getAsunto(),
+            exp.getDocumentoReferencia(),
+            exp.getFechaInicio(),
+            data.getDni(),
+            data.getNombres(),
+            data.getTelefono(),
+            data.getEmail(),
+            data.getTipo(),
+            exp.getDependenciaActual(),
+        };
+
+        table.addRow(row);
+        ptr = ptr.getNext();
     }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,11 +77,11 @@ public class ShowUsersUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "PRIORIDAD", "ASUNTO", "DOCUMENTO", "FECHA", "DNI", "NOMBRE", "TELEFONO", "EMAIL", "TIPO"
+                "ID", "PRIORIDAD", "ASUNTO", "DOCUMENTO", "FECHA", "DNI", "NOMBRE", "TELEFONO", "EMAIL", "TIPO", "DEPENDENCIA"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -84,22 +102,20 @@ public class ShowUsersUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(goBack)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(23, 23, 23)
+                        .addComponent(goBack))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 861, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(goBack)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

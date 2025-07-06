@@ -55,6 +55,10 @@ public class ListaEnlazadaDoble {
     }
     return null; // No encontrado
 }
+    
+    public NodoExpediente getFrente() {
+    return head;
+}
 
 
 }

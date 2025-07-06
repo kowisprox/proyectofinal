@@ -22,7 +22,7 @@ public class Expediente {
     private Dependencia dependencia;
     private String DependenciaActual;
 
-    public Expediente(int Id, int Prioridad, DataInteresado Data, String Asunto, String DocumentoReferencia, String FechaInicio) {
+    public Expediente(int Id, int Prioridad, DataInteresado Data, String Asunto, String DocumentoReferencia, String FechaInicio, String dependencia) {
         this.Id = Id;
         this.Prioridad = Prioridad;
         this.Data = Data;
@@ -30,8 +30,19 @@ public class Expediente {
         this.DocumentoReferencia = DocumentoReferencia;
         this.FechaInicio = FechaInicio;
         this.SeguirExp = new ListaEnlazada();
+        this.DependenciaActual = dependencia;
+        
     }
 
+    public String getDependenciaActual() {
+        return DependenciaActual;
+    }
+
+    public void setDependenciaActual(String DependenciaActual) {
+        this.DependenciaActual = DependenciaActual;
+    }
+
+    
     public int getId() {
         return Id;
     }
