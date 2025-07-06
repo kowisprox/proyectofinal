@@ -141,7 +141,7 @@ public class LinkedList<T> {
         return count;
     }
 
-    public Node<T> L() {
+    public Node L() {
         return L;
     }
 }

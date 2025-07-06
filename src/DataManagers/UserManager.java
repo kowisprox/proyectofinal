@@ -4,6 +4,7 @@
  */
 package DataManagers;
 
+import TDA.Simple.Cola;
 import DataClasses.*;
 import TDA.Simple.*;
 
@@ -70,9 +71,9 @@ public class UserManager {
     }
 
     // Registra el tránsito del expediente en el seguimiento
-    public static void registrarMovimiento(Expediente exp, String evento) {
-        exp.getSeguirExp().addLast(evento);
-    }
+    public static void registrarMovimiento(Expediente exp, String mensaje) {
+    exp.getSeguirExp().addLast(mensaje);
+        }
 
     public static void mostrarSeguimiento(Expediente exp) {
         System.out.println("Seguimiento del expediente ID " + exp.getId() + ":");
@@ -98,4 +99,40 @@ public class UserManager {
     public static void addUser(UserData userData) {
         users.addLast(userData);
     }
+    
+    public Expediente buscarPorID(int id) {
+    TDA.Simple.NodoExpediente ptr = ListaExp.getFrente();
+    while (ptr != null) {
+        if (ptr.getExpediente().getId() == id) {
+            return ptr.getExpediente();
+            }
+            ptr = ptr.getNext();
+        }
+        return null; // No se encontró
+    }
+    
+    public void finalizarExpediente(int id) {
+    TDA.Simple.NodoExpediente ptr = ListaExp.getFrente();
+
+    while (ptr != null) {
+        if (ptr.getExpediente().getId() == id) {
+            Expediente exp = ptr.getExpediente();
+            exp.setDependenciaActual("Administrador");
+
+            // Asignar fecha y hora actual del sistema
+            java.time.LocalDateTime now = java.time.LocalDateTime.now();
+            String fechaFin = now.toLocalDate().toString();   // formato: yyyy-MM-dd
+            String horaFin = now.toLocalTime().withNano(0).toString(); // formato: HH:mm:ss
+
+            exp.setFechaFin(fechaFin);
+            exp.setHoraFin(horaFin);
+            
+            exp.finalizarTramite();
+
+            return;
+            }
+        ptr = ptr.getNext();
+        }
+    }
+    
 }

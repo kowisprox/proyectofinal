@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DataClasses;
-
+import TDA.Simple.Cola;
 import TDA.Simple.ListaEnlazada;
 
 /**
@@ -12,25 +12,29 @@ import TDA.Simple.ListaEnlazada;
  */
 public class Expediente {
     private int Id;
-    private int Prioridad;
+    private String Prioridad;
     private DataInteresado Data;
     private String Asunto;
     private String DocumentoReferencia;
     private String FechaInicio;
+    private String HoraInicio;
     private String FechaFin;
-    private ListaEnlazada SeguirExp;
+    private String HoraFin;
+    private ListaEnlazada  SeguirExp;
     private Dependencia dependencia;
     private String DependenciaActual;
+    private boolean finalizado;
 
-    public Expediente(int Id, int Prioridad, DataInteresado Data, String Asunto, String DocumentoReferencia, String FechaInicio, String dependencia) {
+    public Expediente(int Id, String Prioridad, DataInteresado Data, String Asunto, String DocumentoReferencia, String FechaInicio, String HoraInicio, String dependencia) {
         this.Id = Id;
         this.Prioridad = Prioridad;
         this.Data = Data;
         this.Asunto = Asunto;
         this.DocumentoReferencia = DocumentoReferencia;
         this.FechaInicio = FechaInicio;
+        this.HoraInicio = HoraInicio;
         this.SeguirExp = new ListaEnlazada();
-        this.DependenciaActual = dependencia;
+        this.DependenciaActual = "Administrador";
         
     }
 
@@ -42,6 +46,39 @@ public class Expediente {
         this.DependenciaActual = DependenciaActual;
     }
 
+    public String getHoraInicio() {
+        return HoraInicio;
+    }
+
+    public void setHoraInicio(String HoraInicio) {
+        this.HoraInicio = HoraInicio;
+    }
+
+    public String getHoraFin() {
+        return HoraFin;
+    }
+
+    public void setHoraFin(String HoraFin) {
+        this.HoraFin = HoraFin;
+    }
+
+    public Dependencia getDependencia() {
+        return dependencia;
+    }
+
+    public void setDependencia(Dependencia dependencia) {
+        this.dependencia = dependencia;
+    }
+
+    public boolean isFinalizado() {
+        return finalizado;
+    }
+
+    public void setFinalizado(boolean finalizado) {
+        this.finalizado = finalizado;
+    }
+
+    
     
     public int getId() {
         return Id;
@@ -51,11 +88,11 @@ public class Expediente {
         this.Id = Id;
     }
 
-    public int getPrioridad() {
+    public String getPrioridad() {
         return Prioridad;
     }
 
-    public void setPrioridad(int Prioridad) {
+    public void setPrioridad(String Prioridad) {
         this.Prioridad = Prioridad;
     }
 
@@ -107,6 +144,7 @@ public class Expediente {
         this.SeguirExp = Seguimiento;
     }
 
-    
-
+    public void finalizarTramite() {
+    this.finalizado = true;
     }
+}

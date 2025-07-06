@@ -1,7 +1,6 @@
-
 package TDA.Simple;
 
-public class Cola {
+public class Cola<T> {
     private static final int MAX_SIZE = 50;
     private Object[] data;
     private int ini;
@@ -23,7 +22,7 @@ public class Cola {
         return cantidad == MAX_SIZE;
     }
 
-    public void encolar(Object item) {
+    public void encolar(T item) {
         if (isFull()) {
             System.out.println("Cola llena.");
             return;
@@ -33,14 +32,15 @@ public class Cola {
         cantidad++;
     }
 
-    public Object desencolar() {
+    public T desencolar() {
         if (isEmpty()) {
             System.out.println("Cola vacía.");
             return null;
         }
-        Object item = data[ini];
+        T item = (T) data[ini];
         ini = (ini + 1) % MAX_SIZE;
         cantidad--;
         return item;
     }
+    
 }

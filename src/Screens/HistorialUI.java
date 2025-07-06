@@ -4,6 +4,10 @@
  */
 package Screens;
 
+import DataClasses.Expediente;
+import DataManagers.UserManager;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Win10
@@ -13,8 +17,42 @@ public class HistorialUI extends javax.swing.JFrame {
     /**
      * Creates new form HistorialUI
      */
-    public HistorialUI() {
+    private UserManager administrador;
+    
+    public HistorialUI(UserManager administrador) {
         initComponents();
+        this.administrador = administrador;
+        cargarHistorial();
+    }
+    
+    private void cargarHistorial() {
+    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) userTable.getModel();
+    model.setRowCount(0); // limpiar tabla
+
+    TDA.Simple.NodoExpediente ptr = administrador.ListaExp.getFrente();
+
+    while (ptr != null) {
+        var exp = ptr.getExpediente();
+
+        boolean finalizado = exp.isFinalizado();
+        String dependenciaMostrada = finalizado ? "Administrador" : exp.getDependenciaActual();
+        String estado = finalizado ? "Finalizado" : "Activo";
+        
+        Object[] row = new Object[] {
+            exp.getId(),
+            exp.getPrioridad(),
+            exp.getAsunto(),
+            exp.getDocumentoReferencia(),
+            exp.getFechaInicio(),
+            exp.getHoraInicio(),
+            exp.getFechaFin() != null ? exp.getFechaFin() : "",
+            exp.getHoraFin() != null ? exp.getHoraFin() : "",
+            dependenciaMostrada,
+            estado
+            };
+        model.addRow(row);
+        ptr = ptr.getNext();
+        }
     }
 
     /**
@@ -28,21 +66,22 @@ public class HistorialUI extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         userTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        goBack = new javax.swing.JButton();
+        jMoviemientos = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        userTable.setBackground(new java.awt.Color(0, 51, 51));
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "PRIORIDAD", "ASUNTO", "DOCUMENTO", "FECHA", "DNI", "NOMBRE", "TELEFONO", "EMAIL", "TIPO", "DEPENDENCIA"
+                "ID", "PRIORIDAD", "ASUNTO", "DOCUMENTO", "FECHA INICIO", "HORA INICIO", "FECHA FIN", "HORA FIN", "DEPENDENCIA", "ESTADO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -51,85 +90,107 @@ public class HistorialUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(userTable);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 0));
-        jButton1.setText("SALIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        goBack.setBackground(new java.awt.Color(0, 0, 0));
+        goBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        goBack.setForeground(new java.awt.Color(255, 255, 255));
+        goBack.setText("SALIR");
+        goBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                goBackActionPerformed(evt);
             }
         });
+
+        jMoviemientos.setBackground(new java.awt.Color(255, 153, 0));
+        jMoviemientos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMoviemientos.setForeground(new java.awt.Color(255, 255, 255));
+        jMoviemientos.setText("MOVIMIENTOS");
+        jMoviemientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMoviemientosActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 3, 24)); // NOI18N
+        jLabel1.setText("HISTORIAL");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(370, 370, 370))
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jButton1)
-                .addContainerGap(779, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 849, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(goBack)
+                        .addGap(18, 18, 18)
+                        .addComponent(jMoviemientos))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 395, Short.MAX_VALUE)
-                .addComponent(jButton1))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(5, 5, 5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(28, Short.MAX_VALUE)))
+                .addGap(0, 19, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(goBack)
+                    .addComponent(jMoviemientos))
+                .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackActionPerformed
         // TODO add your handling code here:
         ScreenManager.goBack(this);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_goBackActionPerformed
+
+    private void jMoviemientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMoviemientosActionPerformed
+        int filaSeleccionada = userTable.getSelectedRow();
+
+    if (filaSeleccionada == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Seleccione un expediente primero.");
+        return;
+    }
+
+    int id = (int) userTable.getValueAt(filaSeleccionada, 0);
+    Expediente exp = administrador.buscarPorID(id);
+
+    if (exp != null) {
+        StringBuilder historial = new StringBuilder();
+        TDA.Simple.Node<String> nodo = exp.getSeguirExp().getFrente();
+
+        while (nodo != null) {
+            historial.append("- ").append(nodo.item()).append("\n");
+            nodo = nodo.next();
+        }
+
+        javax.swing.JOptionPane.showMessageDialog(this,
+            historial.length() > 0 ? historial.toString() : "No hay movimientos registrados.",
+            "Movimientos del Expediente " + id,
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+    }//GEN-LAST:event_jMoviemientosActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HistorialUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HistorialUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HistorialUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HistorialUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HistorialUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton goBack;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jMoviemientos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables

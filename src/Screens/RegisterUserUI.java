@@ -37,7 +37,10 @@ public class RegisterUserUI extends javax.swing.JFrame {
         initComponents();
         this.administrador = administrador;
         setLocationRelativeTo(null);
-        //this.setContentPane(fondo);
+        lb_FechaInicio.setText(java.time.LocalDate.now().toString());
+        lb_HoraInicio.setText(java.time.LocalTime.now().withNano(0).toString());
+        lb_FechaInicio.setEditable(false);
+        lb_HoraInicio.setEditable(false);
     }
     
 
@@ -53,7 +56,6 @@ public class RegisterUserUI extends javax.swing.JFrame {
         goBack = new javax.swing.JButton();
         register = new javax.swing.JButton();
         lb_identificador = new javax.swing.JTextField();
-        lb_prioridad = new javax.swing.JTextField();
         lb_asunto = new javax.swing.JTextField();
         warning = new javax.swing.JLabel();
         lb_dni = new javax.swing.JTextField();
@@ -73,13 +75,16 @@ public class RegisterUserUI extends javax.swing.JFrame {
         lb_FechaInicio = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        lb_dependencia = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
         lb_tipo = new javax.swing.JComboBox<>();
+        lb_prioridad = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        lb_HoraInicio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        goBack.setBackground(new java.awt.Color(255, 255, 0));
+        goBack.setBackground(new java.awt.Color(0, 0, 0));
+        goBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        goBack.setForeground(new java.awt.Color(255, 255, 255));
         goBack.setText("Salir");
         goBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +93,8 @@ public class RegisterUserUI extends javax.swing.JFrame {
         });
 
         register.setBackground(new java.awt.Color(255, 153, 0));
+        register.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        register.setForeground(new java.awt.Color(255, 255, 255));
         register.setText("Registrar");
         register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,26 +102,23 @@ public class RegisterUserUI extends javax.swing.JFrame {
             }
         });
 
-        lb_identificador.setBackground(new java.awt.Color(0, 255, 255));
         lb_identificador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lb_identificadorActionPerformed(evt);
             }
         });
 
-        lb_prioridad.setBackground(new java.awt.Color(0, 255, 255));
-
-        lb_asunto.setBackground(new java.awt.Color(0, 255, 255));
-
         warning.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         warning.setForeground(new java.awt.Color(255, 0, 51));
 
-        lb_dni.setBackground(new java.awt.Color(0, 255, 255));
+        lb_dni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lb_dniActionPerformed(evt);
+            }
+        });
 
-        lb_documento.setBackground(new java.awt.Color(0, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 3, 18)); // NOI18N
         jLabel1.setText("REGISTRAR EXPEDIENTE");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -135,7 +139,6 @@ public class RegisterUserUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel7.setText("NOMBRE");
 
-        lb_nombre.setBackground(new java.awt.Color(51, 255, 255));
         lb_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lb_nombreActionPerformed(evt);
@@ -145,14 +148,9 @@ public class RegisterUserUI extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel8.setText("TELEFONO");
 
-        lb_telefono.setBackground(new java.awt.Color(0, 255, 255));
-
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel9.setText("EMAIL");
 
-        lb_email.setBackground(new java.awt.Color(0, 255, 255));
-
-        lb_FechaInicio.setBackground(new java.awt.Color(0, 255, 255));
         lb_FechaInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lb_FechaInicioActionPerformed(evt);
@@ -165,22 +163,21 @@ public class RegisterUserUI extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel11.setText("TIPO");
 
-        lb_dependencia.setBackground(new java.awt.Color(0, 204, 0));
-        lb_dependencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bienestar", "Tesoreria", "Recursos Humanos" }));
-        lb_dependencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lb_dependenciaActionPerformed(evt);
-            }
-        });
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
-        jLabel12.setText("DEPENDENCIA");
-
-        lb_tipo.setBackground(new java.awt.Color(0, 204, 102));
         lb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Interno (Ulima)", "Externo" }));
         lb_tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lb_tipoActionPerformed(evt);
+            }
+        });
+
+        lb_prioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baja", "Media", "Alta" }));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jLabel12.setText("HORA");
+
+        lb_HoraInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lb_HoraInicioActionPerformed(evt);
             }
         });
 
@@ -189,37 +186,30 @@ public class RegisterUserUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(194, 194, 194))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lb_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lb_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lb_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lb_email, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lb_dependencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(44, 44, 44))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lb_HoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lb_identificador, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lb_prioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lb_identificador, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(lb_prioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -227,91 +217,90 @@ public class RegisterUserUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lb_documento, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lb_documento, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addComponent(warning, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(goBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(goBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lb_FechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(214, 214, 214))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(warning, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(195, 195, 195))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(lb_FechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(2, 2, 2)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(lb_tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lb_dni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                    .addComponent(lb_telefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                    .addComponent(lb_nombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                    .addComponent(lb_email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                                .addGap(44, 44, 44))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(register)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(lb_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(lb_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(lb_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(lb_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(lb_identificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(lb_prioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(lb_asunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lb_documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lb_FechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))))
-                .addGap(9, 9, 9)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_dependencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(lb_identificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(lb_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lb_prioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(lb_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lb_asunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(lb_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel9)
+                    .addComponent(lb_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_FechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(lb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(62, 62, 62)
                         .addComponent(warning, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(lb_HoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(goBack, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -329,7 +318,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
         // TODO add your handling code here:
         
-        if (lb_identificador.getText().isBlank() || lb_prioridad.getText().isBlank() || lb_asunto.getText().isBlank() 
+        if (lb_identificador.getText().isBlank() || lb_prioridad.getSelectedItem().toString().isBlank() || lb_asunto.getText().isBlank() 
     || lb_documento.getText().isBlank() || lb_FechaInicio.getText().isBlank() || lb_dni.getText().isBlank()
     || lb_nombre.getText().isBlank() || lb_telefono.getText().isBlank() || lb_email.getText().isBlank()) {
 
@@ -338,7 +327,6 @@ public class RegisterUserUI extends javax.swing.JFrame {
 }      
         try {
             int identificador = Integer.parseInt(lb_identificador.getText());
-            int prioridad = Integer.parseInt(lb_prioridad.getText());
             int dni = Integer.parseInt(lb_dni.getText());
             int telefono = Integer.parseInt(lb_telefono.getText());
                 } catch (NumberFormatException e) {
@@ -348,7 +336,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
 
         
             int identificador = Integer.parseInt(lb_identificador.getText());
-            int prioridad = Integer.parseInt(lb_prioridad.getText());
+            String prioridad = lb_prioridad.getSelectedItem().toString();
             String documento = lb_documento.getText().trim();
             int dni = Integer.parseInt(lb_dni.getText());
             int telefono = Integer.parseInt(lb_telefono.getText());            
@@ -356,8 +344,8 @@ public class RegisterUserUI extends javax.swing.JFrame {
             String email = lb_email.getText().trim();
             String asunto = lb_asunto.getText().trim();
             String FechaInicio = lb_FechaInicio.getText().trim();
+            String HoraInicio = lb_HoraInicio.getText().trim();
             String tipo = lb_tipo.getSelectedItem().toString();
-            String dependencia = lb_dependencia.getSelectedItem().toString();
             
             if (administrador.buscarExpediente(identificador)) {
                 warning.setText("ID YA REGISTRADO");
@@ -367,11 +355,12 @@ public class RegisterUserUI extends javax.swing.JFrame {
 
             DataInteresado interesado = new DataInteresado(dni, nombre, telefono, email, tipo);
 
-            Expediente exp = new Expediente(identificador, prioridad, interesado, asunto, documento, FechaInicio, dependencia);
+            Expediente exp = new Expediente(identificador, prioridad, interesado, asunto, documento, FechaInicio, HoraInicio, "Administador");
 
             administrador.registrarExpediente(exp);
 
             JOptionPane.showMessageDialog(this, "Expediente registrado exitosamente.");
+            resetForm();
 
         
         
@@ -389,13 +378,17 @@ public class RegisterUserUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lb_FechaInicioActionPerformed
 
-    private void lb_dependenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lb_dependenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lb_dependenciaActionPerformed
-
     private void lb_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lb_tipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lb_tipoActionPerformed
+
+    private void lb_dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lb_dniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_dniActionPerformed
+
+    private void lb_HoraInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lb_HoraInicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lb_HoraInicioActionPerformed
 
     
     private boolean isUnique(String username) {
@@ -410,14 +403,25 @@ public class RegisterUserUI extends javax.swing.JFrame {
     }
     
     private boolean isPasswordValid() {
-        return lb_prioridad.getText().equals(lb_asunto.getText());
+        return lb_prioridad.getSelectedItem().toString().equals(lb_asunto.getText());
     }
     
-    private void resetForm() {
-        lb_identificador.setText("");
-        lb_prioridad.setText("");
-        lb_asunto.setText("");
-    }
+        private void resetForm() {
+            lb_identificador.setText("");
+            lb_asunto.setText("");
+            lb_documento.setText("");
+            lb_dni.setText("");
+            lb_nombre.setText("");
+            lb_telefono.setText("");
+            lb_email.setText("");
+            lb_prioridad.setSelectedIndex(0); 
+            lb_tipo.setSelectedIndex(0);      
+            warning.setText(""); 
+            
+            String horaActual = java.time.LocalTime.now().withNano(0).toString();
+            lb_HoraInicio.setText(horaActual);
+        }
+    
     
     /**
      * @param args the command line arguments
@@ -469,14 +473,14 @@ public class RegisterUserUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField lb_FechaInicio;
+    private javax.swing.JTextField lb_HoraInicio;
     private javax.swing.JTextField lb_asunto;
-    private javax.swing.JComboBox<String> lb_dependencia;
     private javax.swing.JTextField lb_dni;
     private javax.swing.JTextField lb_documento;
     private javax.swing.JTextField lb_email;
     private javax.swing.JTextField lb_identificador;
     private javax.swing.JTextField lb_nombre;
-    private javax.swing.JTextField lb_prioridad;
+    private javax.swing.JComboBox<String> lb_prioridad;
     private javax.swing.JTextField lb_telefono;
     private javax.swing.JComboBox<String> lb_tipo;
     private javax.swing.JButton register;

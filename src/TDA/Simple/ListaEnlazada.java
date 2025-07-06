@@ -1,75 +1,49 @@
 package TDA.Simple;
 
-public class ListaEnlazada {
+public class ListaEnlazada<T> {
 
-    private Nodo L;
+    private Node<T> L;
 
     public ListaEnlazada() {
         this.L = null;
     }
 
-    public void addFirst(Object value) {
-        Nodo newNode = new Nodo(value);
+    public void addFirst(T value) {
+        Node<T> newNode = new Node<>(value);
         newNode.setNext(L);
         L = newNode;
     }
 
-    public void addLast(Object value) {
-        Nodo newNode = new Nodo(value);
+    public void addLast(T value) {
+        Node<T> newNode = new Node<>(value);
         if (L == null) {
             addFirst(value);
         } else {
-            Nodo ptr = L;
-            while (ptr.getNext() != null) {
-                ptr = ptr.getNext();
+            Node<T> ptr = L;
+            while (ptr.next() != null) {
+                ptr = ptr.next();
             }
             ptr.setNext(newNode);
         }
     }
 
-    public void addBefore(Object item, Object ref) {
-        Nodo newNode = new Nodo(item);
-
-        if (L != null) {
-            Nodo ptr = L;
-            Nodo prev = null;
-            while (ptr != null && !ptr.getValue().equals(ref)) {
-                prev = ptr;
-                ptr = ptr.getNext();
-            }
-
-            if (ptr != null) {
-                if (prev == null) {
-                    addFirst(item);
-                } else {
-                    prev.setNext(newNode);
-                    newNode.setNext(ptr);
-                }
-            } else {
-                System.out.println("No se encontró el valor de referencia.");
-            }
-        } else {
-            System.out.println("Lista vacía, no existe valor de referencia.");
-        }
-    }
-
     public void removeFirst() {
         if (L != null) {
-            L = L.getNext();
+            L = L.next();
         }
     }
 
     public void removeLast() {
         if (L == null) return;
 
-        if (L.getNext() == null) {
+        if (L.next() == null) {
             removeFirst();
         } else {
-            Nodo ptr = L;
-            Nodo prev = null;
-            while (ptr.getNext() != null) {
+            Node<T> ptr = L;
+            Node<T> prev = null;
+            while (ptr.next() != null) {
                 prev = ptr;
-                ptr = ptr.getNext();
+                ptr = ptr.next();
             }
             if (prev != null) {
                 prev.setNext(null);
@@ -77,53 +51,63 @@ public class ListaEnlazada {
         }
     }
 
-    public void remove(Object ref) {
+    public void remove(T ref) {
         if (L == null) return;
 
-        if (L.getValue().equals(ref)) {
+        if (L.item().equals(ref)) {
             removeFirst();
         } else {
-            Nodo ptr = L.getNext();
-            Nodo prev = L;
+            Node<T> ptr = L.next();
+            Node<T> prev = L;
 
-            while (ptr != null && !ptr.getValue().equals(ref)) {
+            while (ptr != null && !ptr.item().equals(ref)) {
                 prev = ptr;
-                ptr = ptr.getNext();
+                ptr = ptr.next();
             }
             if (ptr != null) {
-                prev.setNext(ptr.getNext());
+                prev.setNext(ptr.next());
             }
         }
     }
 
-    public void showElements() {
-        Nodo ptr = L;
-        while (ptr != null) {
-            System.out.print(ptr.getValue() + " --> ");
-            ptr = ptr.getNext();
-        }
-        System.out.println("null");
+    public void vaciar() {
+        L = null;
     }
 
     public int countElements() {
         int count = 0;
-        Nodo ptr = L;
+        Node<T> ptr = L;
         while (ptr != null) {
             count++;
-            ptr = ptr.getNext();
+            ptr = ptr.next();
         }
         return count;
     }
-    
-    public String mostrarElementos() {
-    StringBuilder sb = new StringBuilder();
-    Nodo aux = L;
 
-    while (aux != null) {
-        sb.append(aux.getValue()).append("\n");
-        aux = aux.getNext();
+    public void showElements() {
+        Node<T> ptr = L;
+        while (ptr != null) {
+            System.out.print(ptr.item() + " --> ");
+            ptr = ptr.next();
+        }
+        System.out.println("null");
     }
-    return sb.toString();
-}
 
+    public String mostrarElementos() {
+        StringBuilder sb = new StringBuilder();
+        Node<T> aux = L;
+        while (aux != null) {
+            sb.append(aux.item()).append("\n");
+            aux = aux.next();
+        }
+        return sb.toString();
+    }
+
+    public Node<T> getFrente() {
+        return L;
+    }
+
+    public Node<T> L() {
+        return L;
+    }
 }
