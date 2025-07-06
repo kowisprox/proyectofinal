@@ -1,17 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Screens;
 
 import DataClasses.Expediente;
 import DataManagers.UserManager;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Win10
- */
 public class HistorialUI extends javax.swing.JFrame {
 
     /**

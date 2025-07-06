@@ -1,26 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Screens;
 
 import DataClasses.DataInteresado;
 import DataClasses.DependenciasDisp;
 import DataClasses.Expediente;
-import DataClasses.UserData;
 import DataManagers.UserManager;
 import TDA.Simple.Node;
-import TDA.Simple.Nodo;
-import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author A16539
- */
 public class ShowExpedientesUI extends javax.swing.JFrame {
     //FondoPanel fondo = new FondoPanel();
 
@@ -28,18 +16,24 @@ public class ShowExpedientesUI extends javax.swing.JFrame {
      * Creates new form ShowExpedientesUI
      */
     private UserManager administrador;
+    
+    public static ShowExpedientesUI instancia;
 
     public ShowExpedientesUI(UserManager administrador) {
-    initComponents();
-    this.administrador = administrador;
-    jFiltroDepend.removeAllItems(); // Limpia cualquier item por defecto
-    jFiltroDepend.addItem("Todas");
-    for (String dep : DependenciasDisp.Lista) {
-        jFiltroDepend.addItem(dep);
+        initComponents();
+        this.administrador = administrador;
+        instancia = this;
+        jFiltroDepend.removeAllItems(); // Limpia cualquier item por defecto
+        jFiltroDepend.addItem("Todas");
+        for (String dep : DependenciasDisp.Lista) {
+            jFiltroDepend.addItem(dep);
+       }
+        initializeTable();
     }
-    initializeTable();
     
-}
+    public javax.swing.JTable getUserTable() {
+       return userTable;
+    }
     
     public void refreshTable() {
     DefaultTableModel table = (DefaultTableModel) userTable.getModel();

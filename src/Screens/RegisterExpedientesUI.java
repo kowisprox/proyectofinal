@@ -1,29 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Screens;
 
 import DataClasses.Expediente;
 import DataClasses.DataInteresado;
-import DataClasses.Dependencia;
 import DataClasses.UserData;
 import DataManagers.UserManager;
-import TDA.Simple.ListaEnlazada;
 import TDA.Simple.Node;
-import TDA.Simple.Nodo;
-import java.awt.Graphics;
-import java.awt.Image;
-import static java.lang.Math.exp;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-
-/**
- *
- * @author A16539
- */
 public class RegisterExpedientesUI extends javax.swing.JFrame {
 
     //FondoPanel fondo = new FondoPanel();

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Screens;
 
 import DataClasses.UserData;
@@ -12,10 +9,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-/**
- *
- * @author migue
- */
 public class LoginUI extends javax.swing.JFrame {
     
     FondoPanel fondo = new FondoPanel();
