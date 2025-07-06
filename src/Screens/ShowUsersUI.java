@@ -9,6 +9,10 @@ import DataClasses.Expediente;
 import DataClasses.UserData;
 import DataManagers.UserManager;
 import TDA.Simple.Node;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author A16539
  */
 public class ShowUsersUI extends javax.swing.JFrame {
+    //FondoPanel fondo = new FondoPanel();
 
     /**
      * Creates new form ShowUsersUI
@@ -26,6 +31,7 @@ public class ShowUsersUI extends javax.swing.JFrame {
     initComponents();
     this.administrador = administrador; // usamos la instancia compartida
     initializeTable();
+    //this.setContentPane(fondo);
 }
     
     private void initializeTable() {
@@ -72,6 +78,8 @@ public class ShowUsersUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        userTable.setBackground(new java.awt.Color(0, 51, 51));
+        userTable.setForeground(new java.awt.Color(255, 255, 255));
         userTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -90,6 +98,7 @@ public class ShowUsersUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(userTable);
 
+        goBack.setBackground(new java.awt.Color(255, 255, 0));
         goBack.setText("Salir");
         goBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,4 +141,19 @@ public class ShowUsersUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable userTable;
     // End of variables declaration//GEN-END:variables
+    /*
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/Iconos/MaderaPared.jpg")).getImage();
+            
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    */
 }

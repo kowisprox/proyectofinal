@@ -12,8 +12,12 @@ import DataManagers.UserManager;
 import TDA.Simple.ListaEnlazada;
 import TDA.Simple.Node;
 import TDA.Simple.Nodo;
+import java.awt.Graphics;
+import java.awt.Image;
 import static java.lang.Math.exp;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 /**
@@ -22,15 +26,18 @@ import javax.swing.JOptionPane;
  */
 public class RegisterUserUI extends javax.swing.JFrame {
 
+    //FondoPanel fondo = new FondoPanel();
     /**
      * Creates new form Test
      */
     private UserManager administrador;
     
     public RegisterUserUI(UserManager administrador) {
+        
         initComponents();
         this.administrador = administrador;
         setLocationRelativeTo(null);
+        //this.setContentPane(fondo);
     }
     
 
@@ -72,6 +79,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        goBack.setBackground(new java.awt.Color(255, 255, 0));
         goBack.setText("Salir");
         goBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +87,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
             }
         });
 
+        register.setBackground(new java.awt.Color(255, 153, 0));
         register.setText("Registrar");
         register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,14 +95,23 @@ public class RegisterUserUI extends javax.swing.JFrame {
             }
         });
 
+        lb_identificador.setBackground(new java.awt.Color(0, 255, 255));
         lb_identificador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lb_identificadorActionPerformed(evt);
             }
         });
 
+        lb_prioridad.setBackground(new java.awt.Color(0, 255, 255));
+
+        lb_asunto.setBackground(new java.awt.Color(0, 255, 255));
+
         warning.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         warning.setForeground(new java.awt.Color(255, 0, 51));
+
+        lb_dni.setBackground(new java.awt.Color(0, 255, 255));
+
+        lb_documento.setBackground(new java.awt.Color(0, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
@@ -117,6 +135,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel7.setText("NOMBRE");
 
+        lb_nombre.setBackground(new java.awt.Color(51, 255, 255));
         lb_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lb_nombreActionPerformed(evt);
@@ -126,9 +145,14 @@ public class RegisterUserUI extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel8.setText("TELEFONO");
 
+        lb_telefono.setBackground(new java.awt.Color(0, 255, 255));
+
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel9.setText("EMAIL");
 
+        lb_email.setBackground(new java.awt.Color(0, 255, 255));
+
+        lb_FechaInicio.setBackground(new java.awt.Color(0, 255, 255));
         lb_FechaInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lb_FechaInicioActionPerformed(evt);
@@ -141,6 +165,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel11.setText("TIPO");
 
+        lb_dependencia.setBackground(new java.awt.Color(0, 204, 0));
         lb_dependencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bienestar", "Tesoreria", "Recursos Humanos" }));
         lb_dependencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,6 +176,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         jLabel12.setText("DEPENDENCIA");
 
+        lb_tipo.setBackground(new java.awt.Color(0, 204, 102));
         lb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Interno (Ulima)", "Externo" }));
         lb_tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,7 +250,7 @@ public class RegisterUserUI extends javax.swing.JFrame {
                                 .addComponent(warning, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(58, 58, 58))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(195, 195, 195))
         );
@@ -456,4 +482,20 @@ public class RegisterUserUI extends javax.swing.JFrame {
     private javax.swing.JButton register;
     private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
+
+    /*
+    class FondoPanel extends JPanel{
+        private Image imagen;
+        
+        @Override
+        public void paint(Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/Iconos/MaderaPared.jpg")).getImage();
+            
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    */
 }
