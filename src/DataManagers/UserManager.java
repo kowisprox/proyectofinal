@@ -13,7 +13,7 @@ public class UserManager {
     public Cola ColaPendientes;
     public ListaCircular ListaAlertas;
 
-    public UserManager() {
+       public UserManager() {
         this.ArbolDepend = new Arbol();
         this.ListaExp = new ListaEnlazadaDoble();
         this.ColaPendientes = new Cola();
@@ -26,9 +26,7 @@ public class UserManager {
         this.ColaPendientes = ColaPendientes;
         this.ListaAlertas = ListaAlertas;
     }
-         
     
-          
     // Registrar dependencia completa (id + nombre)
     public void registrarDependencia(int id, String nombre) {
         Dependencia dep = new Dependencia(id, nombre);
@@ -55,8 +53,7 @@ public class UserManager {
     
     public Arbol getArbolDependencias() {
     return ArbolDepend;
-}
-
+    }
 
     public static void finalizarTramite(Expediente exp, String fechaFin) {
         exp.setFechaFin(fechaFin);

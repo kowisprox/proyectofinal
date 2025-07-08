@@ -367,7 +367,7 @@ public class RegisterExpedientesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_lb_tipoActionPerformed
 
     private void lb_dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lb_dniActionPerformed
-        // TODO add your handling code here:
+            
     }//GEN-LAST:event_lb_dniActionPerformed
 
     private void lb_HoraInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lb_HoraInicioActionPerformed
