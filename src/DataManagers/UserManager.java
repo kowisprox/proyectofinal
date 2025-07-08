@@ -57,10 +57,8 @@ public class UserManager {
 
     public static void finalizarTramite(Expediente exp, String fechaFin) {
         exp.setFechaFin(fechaFin);
-        // Aquí puedes remover de pendientes o listaAlertas si quieres
     }
 
-    // Registra el tránsito del expediente en el seguimiento
     public static void registrarMovimiento(Expediente exp, String mensaje) {
     exp.getSeguirExp().addLast(mensaje);
         }
@@ -98,7 +96,7 @@ public class UserManager {
             }
             ptr = ptr.getNext();
         }
-        return null; // No se encontró
+        return null; 
     }
     
     public void finalizarExpediente(int id) {
@@ -109,10 +107,9 @@ public class UserManager {
             Expediente exp = ptr.getExpediente();
             exp.setDependenciaActual("Administrador");
 
-            // Asignar fecha y hora actual del sistema
             java.time.LocalDateTime now = java.time.LocalDateTime.now();
-            String fechaFin = now.toLocalDate().toString();   // formato: yyyy-MM-dd
-            String horaFin = now.toLocalTime().withNano(0).toString(); // formato: HH:mm:ss
+            String fechaFin = now.toLocalDate().toString(); 
+            String horaFin = now.toLocalTime().withNano(0).toString(); 
 
             exp.setFechaFin(fechaFin);
             exp.setHoraFin(horaFin);

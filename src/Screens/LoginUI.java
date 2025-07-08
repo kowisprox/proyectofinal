@@ -17,6 +17,7 @@ public class LoginUI extends javax.swing.JFrame {
         
         this.setContentPane(fondo);
         initComponents();
+        setLocationRelativeTo(null);
         UserManager.initialize();
     }
 

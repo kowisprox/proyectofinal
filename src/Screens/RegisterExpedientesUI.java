@@ -14,19 +14,19 @@ public class RegisterExpedientesUI extends javax.swing.JFrame {
     /**
      * Creates new form Test
      */
-    private UserManager administrador;
-    
-    public RegisterExpedientesUI(UserManager administrador) {
-        
-        initComponents();
-        this.administrador = administrador;
-        setLocationRelativeTo(null);
-        lb_FechaInicio.setText(java.time.LocalDate.now().toString());
-        lb_HoraInicio.setText(java.time.LocalTime.now().withNano(0).toString());
-        lb_FechaInicio.setEditable(false);
-        lb_HoraInicio.setEditable(false);
-    }
-    
+        private UserManager administrador;
+
+        public RegisterExpedientesUI(UserManager administrador) {
+
+            initComponents();
+            this.administrador = administrador;
+            setLocationRelativeTo(null);
+            lb_FechaInicio.setText(java.time.LocalDate.now().toString());
+            lb_HoraInicio.setText(java.time.LocalTime.now().withNano(0).toString());
+            lb_FechaInicio.setEditable(false);
+            lb_HoraInicio.setEditable(false);
+        }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

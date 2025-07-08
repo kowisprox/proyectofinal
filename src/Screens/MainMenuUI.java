@@ -19,7 +19,8 @@ public class MainMenuUI extends javax.swing.JFrame {
     public MainMenuUI() {
     this.setContentPane(fondo);
     initComponents();
-    administrador = new UserManager();  // ahora es solo una instancia para todo
+    setLocationRelativeTo(null);
+    administrador = new UserManager();  
 }   
 
     /**

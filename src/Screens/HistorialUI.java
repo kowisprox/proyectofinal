@@ -14,13 +14,14 @@ public class HistorialUI extends javax.swing.JFrame {
     
     public HistorialUI(UserManager administrador) {
         initComponents();
+        setLocationRelativeTo(null);
         this.administrador = administrador;
         cargarHistorial();
     }
     
     private void cargarHistorial() {
     javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) userTable.getModel();
-    model.setRowCount(0); // limpiar tabla
+    model.setRowCount(0);
 
     TDA.Simple.NodoExpediente ptr = administrador.ListaExp.getFrente();
 

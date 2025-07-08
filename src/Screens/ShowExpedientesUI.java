@@ -21,6 +21,7 @@ public class ShowExpedientesUI extends javax.swing.JFrame {
 
     public ShowExpedientesUI(UserManager administrador) {
         initComponents();
+        setLocationRelativeTo(null);
         this.administrador = administrador;
         instancia = this;
         jFiltroDepend.removeAllItems(); // Limpia cualquier item por defecto
@@ -310,9 +311,9 @@ public class ShowExpedientesUI extends javax.swing.JFrame {
         return;
     }
 
-    int confirm = javax.swing.JOptionPane.showConfirmDialog(this, "¿Está seguro de finalizar este expediente?", "Confirmar", javax.swing.JOptionPane.YES_NO_OPTION);
+    int confirmar = javax.swing.JOptionPane.showConfirmDialog(this, "¿Está seguro de finalizar este expediente?", "Confirmar", javax.swing.JOptionPane.YES_NO_OPTION);
 
-    if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+    if (confirmar == javax.swing.JOptionPane.YES_OPTION) {
         int id = (int) userTable.getValueAt(filaSeleccionada, 0);
         administrador.finalizarExpediente(id);
         javax.swing.JOptionPane.showMessageDialog(this, "Expediente finalizado correctamente.");

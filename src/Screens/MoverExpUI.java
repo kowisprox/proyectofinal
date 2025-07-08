@@ -20,6 +20,7 @@ public class MoverExpUI extends javax.swing.JFrame {
     this.idExpediente = idExpediente;
     this.showUsersUI = showUsersUI;
     initComponents();
+    setLocationRelativeTo(null);
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     cargarDependencias();
     id.setText(String.valueOf(idExpediente));
